@@ -1,11 +1,11 @@
 {{#if hasContent}}
-    <h3>Search results:</h3>
+    <h3>Your search results for "{{q}}" is:</h3>
 
     <table class="table table-hover table-sm mt-3">
         <thead>
             <tr>
                 <th scope="col">app_id</th>
-                <th scope="col">Name</th>
+                <th scope="col-5">Name</th>
                 <th scope="col">Category</th>
                 <th scope="col">Rating</th>
                 <th scope="col">Installs</th>
@@ -26,10 +26,18 @@
     <br>
     <nav class="d-flex justify-content-end btn-group">
         {{#if prevPage}}
-        <a href="/prev"><button type="submit" class="btn btn-secondary mx-1">Previous</button></a>
+        <form action="/search" method="get">
+            <input type="hidden" name="q" value="{{q}}">
+            <input type="hidden" name="offset" value="{{prevOffset}}">
+            <button type="submit" class="btn btn-secondary mx-1">Previous</button>
+        </form>
         {{/if}}
         {{#if nextPage}}
-        <a href="/next"><button type="submit" class="btn btn-secondary mx-1">Next</button></a>
+        <form action="/search" method="get">
+            <input type="hidden" name="q" value="{{q}}">
+            <input type="hidden" name="offset" value="{{nextOffset}}">
+            <button type="submit" class="btn btn-secondary mx-1">Next</button>
+        </form>
         {{/if}}
         
     </nav>
