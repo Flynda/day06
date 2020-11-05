@@ -1,0 +1,46 @@
+{{#if hasContent}}
+    <h3>Your search results for "{{q}}" is:</h3>
+
+    <table class="table table-hover table-sm mt-3">
+        <thead>
+            <tr>
+                <th scope="col">app_id</th>
+                <th scope="col-5">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Installs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each recs}}
+            <tr>
+                <th scope="row">{{this.app_id}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.category}}</td>
+                <td>{{this.rating}}</td>
+                <td>{{this.installs}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <br>
+    <nav class="d-flex justify-content-end btn-group">
+        {{#if hasPrevPage}}
+        <form action="/search" method="get">
+            <input type="hidden" name="q" value="{{q}}">
+            <input type="hidden" name="page" value="{{prevPage}}">
+            <button type="submit" class="btn btn-secondary mx-1">Previous</button>
+        </form>
+        {{/if}}
+        {{#if hasNextPage}}
+        <form action="/search" method="get">
+            <input type="hidden" name="q" value="{{q}}">
+            <input type="hidden" name="page" value="{{nextPage}}">
+            <button type="submit" class="btn btn-secondary mx-1">Next</button>
+        </form>
+        {{/if}}
+        
+    </nav>
+{{else}}
+    <h3>Sorry, your search has no results.</h3>
+{{/if}}
